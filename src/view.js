@@ -8,6 +8,7 @@ function createEl() {
     }
     
     function updade(name, price){
+
         const p = document.querySelector(`div.${name}`)
     
         p.innerHTML=`${name}: ${price}`
@@ -20,3 +21,9 @@ function createEl() {
 }
 
 element = createEl()
+
+function updadeCoin(){
+    const coin = document.querySelector('div.coin')
+
+    coin.innerText = `coin: ${player.coin}`
+}
