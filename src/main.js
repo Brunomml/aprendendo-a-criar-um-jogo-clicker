@@ -1,11 +1,5 @@
-const player = {
-    coin:0,
-    cps:1
-}
-
-
 function createItem(name, price, value) {
-    const item = {
+    let item = {
         name,
         price,
         value
@@ -29,14 +23,15 @@ function createItem(name, price, value) {
     }
 
     return {
+        item,
         click
     }
 }
-
 
 
 const oneSecond = 1000
 setInterval(()=>{
     player.coin += player.cps
     updadeCoin()
+    save.updadeSave()
 }, oneSecond)
