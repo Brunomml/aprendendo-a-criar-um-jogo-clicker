@@ -1,4 +1,4 @@
-function createSave() {
+function createSavePlayer() {
     var player = {};
 
     function set() {
@@ -15,7 +15,7 @@ function createSave() {
         const coin = localStorage.getItem('coin')
         const cps = localStorage.getItem('cps')
 
-        console.log(coin, cps);
+        
         player = {
             coin: parseFloat(coin),
             cps: parseFloat(cps)
@@ -63,21 +63,30 @@ function createSave() {
         localStorage.setItem('cps', player.cps)
     }
     
-    function returnSave() {
+    function returnSavePlayer() {
         return player
     }
     
     return{
         start,
         updadeSave,
-        returnSave,
+        returnSavePlayer,
         removeSave
     }
 }
 
-const save = createSave()
+function createSaveItem() {
+    function set(){
+
+    }
+    return {
+        start
+    }
+}
+
+const save = createSavePlayer()
 
 save.start()
 
-var player = save.returnSave()
+var player = save.returnSavePlayer()
 updadeCoin()
