@@ -26,4 +26,7 @@ function updadeCoin(){
     const coin = document.querySelector('div.coin')
 
     coin.innerText = `coin: ${player.coin}`
+    
+    updadeSave('coin', player.coin)
+    updadeSave('cps', player.cps)
 }

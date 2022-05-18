@@ -1,92 +1,31 @@
-function createSavePlayer() {
-    var player = {};
-
-    function set() {
-        player = {
-            coin:0,
-            cps:1
-        }
-    
-        localStorage.setItem('coin', player.coin)
-        localStorage.setItem('cps', player.cps)
-    }
-    
-    function get() {
-        const coin = localStorage.getItem('coin')
-        const cps = localStorage.getItem('cps')
-
-        
-        player = {
-            coin: parseFloat(coin),
-            cps: parseFloat(cps)
-        }
-    }
-
-
-    function checkSave(){
-        const coin = localStorage.getItem('coin')
-        const cps = localStorage.getItem('cps')
-
-        console.log(coin, cps);
-        if (coin == undefined || cps == undefined) {
-            console.log('false');
-            return false
-        }
-    
-        if (!coin == false || cps == false) {
-            console.log('true');
-            return true
-        }
-
-    }
-
-    function start() {
-        resp = checkSave()
-        if (resp == true) {
-            get()
-        }
-
-        if (resp == false) {
-            set()
-        }
-    }
-
-    function removeSave() {
-        localStorage.removeItem('coin')
-        localStorage.removeItem('cps')
-    }
-
-    function updadeSave(){
-        removeSave()
-
-        localStorage.setItem('coin', player.coin)
-        localStorage.setItem('cps', player.cps)
-    }
-    
-    function returnSavePlayer() {
-        return player
-    }
-    
-    return{
-        start,
-        updadeSave,
-        returnSavePlayer,
-        removeSave
-    }
+function updadeSave(name, value) {
+    localStorage.setItem(name, value)
+    console.log(`[${name}]`, value);
 }
 
-function createSaveItem() {
-    function set(){
 
-    }
-    return {
-        start
-    }
+
+function setSave(name, value){
+    localStorage.setItem(name, value)
+    return value
+}
+function getSave(name) {
+    let save = localStorage.getItem(name)
+    return save
 }
 
-const save = createSavePlayer()
+function save(name, value) {
+    playerSave = getSave(name)
+    console.log(playerSave);
+    
+    if (playerSave == null) {
+        setSave(name, value)
+        playerSave = getSave(name)
+    }
+    return parseFloat(playerSave)
+}
 
-save.start()
 
-var player = save.returnSavePlayer()
-updadeCoin()
+function removeSave(name) {
+    localStorage.removeItem(name)
+}
