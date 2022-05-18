@@ -1,6 +1,5 @@
 function updadeSave(name, value) {
     localStorage.setItem(name, value)
-    console.log(`[${name}]`, value);
 }
 
 
@@ -16,7 +15,6 @@ function getSave(name) {
 
 function save(name, value) {
     playerSave = getSave(name)
-    console.log(playerSave);
     
     if (playerSave == null) {
         setSave(name, value)
