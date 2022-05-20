@@ -22,11 +22,9 @@ function createEl() {
 
 element = createEl()
 
-function updadeCoin(){
+function updadeCoinElement(){
     const coin = document.querySelector('div.coin')
 
-    coin.innerText = `coin: ${player.coin}`
-    
-    updadeSave('coin', player.coin)
-    updadeSave('cps', player.cps)
+    coin.innerText = `coin: ${player.coin.toFixed(1)}`
 }
+

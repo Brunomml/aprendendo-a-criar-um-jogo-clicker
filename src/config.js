@@ -13,9 +13,9 @@ function createItem(name, price, value) {
     }
 
     function buy() {
-        player.cps+=item.value
+        player.cps+=item.value/FPS
         player.coin-=item.price
-        item.price+=Math.ceil(item.price*25/100)
+        item.price*=2
     }
     function click() {
         if (player.coin < item.price) return
@@ -28,5 +28,21 @@ function createItem(name, price, value) {
     return {
         item,
         click
+    }
+}
+
+function updadeCoin() {
+    updadeCoinSave()
+    updadeCoinElement()
+}
+
+var FPS = 5
+
+
+
+
+function code(cheat) {
+    if (cheat == 'wwssadadba') {
+        player.coin = 123**5
     }
 }
