@@ -1,3 +1,22 @@
+const Cat = createItem('Cat', 5, 0.1)
+const Dog = createItem('Dog', 10, 1.5)
+const Donkey = createItem('Donkey', 25, 3.1)
+const Goat = createItem('Goat', 75, 4.6)
+const Horse = createItem('Horse', 126, 19.5)
+const Pig = createItem('Pig', 145, 24)
+const Rabbit = createItem('Rabbit', 172, 26)
+const Alpaca = createItem('Alpaca', 180, 35.3)
+const Amphibian = createItem('Amphibian')
+const Anaconda = createItem('Anaconda')
+const Ant = createItem('Ant')
+const Bandicoot = createItem('Bandicoot')
+const Bat = createItem('Bat')
+const Bear = createItem('Bear')
+const Bee = createItem('Bee')
+const Beetle = createItem('Beetle')
+const Bird = createItem('Bird')
+
+
 
 const Blackbird
 const Boar

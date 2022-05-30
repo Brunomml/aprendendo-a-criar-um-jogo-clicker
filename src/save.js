@@ -1,36 +1,79 @@
-function removeSave(name) {
-    localStorage.removeItem(name)
-    if (name == 'all') {
-        localStorage.clear()
+let saves = Object.create(Object.prototype)
+let nicknames = []
+
+
+function checkNickname(nickname) {
+    // nome não existe
+    if (saves[nickname] == undefined) {
+        return false
+    }
+    // nome existe
+    if (saves[nickname] != undefined) {
+        return true
     }
 }
-function updadeSave(name, value) {
-    localStorage.setItem(name, value)
+
+function updade() {
+    nicknames.forEach(nickname => {
+        saves[nickname].coin += saves[nickname].cps
+    })
 }
 
-function updadeCoinSave() {
-    updadeSave('coin', player.coin)
-    updadeSave('cps', player.cps)
+function getSave(nickname) {
+    return saves[nickname]
+}
+
+function updadeSave(stream) {
+    stream.on("fnUpdadeSave", (nickname)=>{
+        stream.emit("updadeSave", getSave(nickname))
+    })
 }
 
 
 
-function save(name, value) {
-    function setSave(name, value){
-        localStorage.setItem(name, value)
-        return value
+// muito complexo
+function addItem(itemName, priceValue, CpsValue){
+
+
+    for (let index = 0; index < nicknames.length; index++) {
+        const nickname = nicknames[index];
+        const playerObjects = saves[nickname].objects
+        
+        //vê se o player já tem esse item
+        if (playerObjects[{name:itemName}] != undefined) return 
+
+
+        saves[nickname].objects.push({
+            name:itemName,
+            timesBought: 0,
+            price: priceValue,
+            cps: CpsValue
+        })
     }
-    function getSave(name) {
-        let save = localStorage.getItem(name)
-        return save
-    }
-    
-    playerSave = getSave(name)
-    
-    if (playerSave == null || playerSave == undefined) {
-        playerSave = setSave(name, value)
-    }
-    return parseFloat(playerSave)
 }
 
-removeSave('all')
+// vai ficar aqui temporariamente
+function buyItem(itemName) {
+    nicknames.forEach(nickname => {
+        saves[nickname].objects.forEach(item => {
+            if (item.name == itemName) {
+                item.timesBought += 1
+            }
+        })
+    })
+}
+
+setInterval(()=>{
+    updade()
+}, 1000/15)
+
+
+module.exports = {
+    checkNickname,
+    addItem,
+    buyItem,
+    updadeSave,
+    getSave,
+    nicknames,
+    saves
+}
